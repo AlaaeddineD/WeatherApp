@@ -71,11 +71,16 @@ extension WeatherViewController: WeatherViewControllerProtocol{
     }
     
     func showCitiesTableView(cities: [City]) {
-        self.cities = cities
-        weatherTableView.reloadData()
         textLabel.isHidden = true
         progressBar.isHidden = true
         restartButton.isHidden = false
+        
+        if cities.count == 0 {
+            self.displayAlert(title: "Erreur", message: "Impossible de charger les données des villes. Veuillez réessayer", actionButtonText: "Ok", style: .alert, vc: self)
+        }else {
+            self.cities = cities
+            weatherTableView.reloadData()
+        }
     }
 }
 

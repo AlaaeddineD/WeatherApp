@@ -19,12 +19,8 @@ class HomeViewController: UIViewController {
             return true
         }
         
-        // Create an alert
-        var dialogMessage = UIAlertController(title: "Attention", message: "une connexion Internet est requise ! veuillez vérifier votre connexion et réessayer", preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "OK", style: .default)
-        dialogMessage.addAction(ok)
-        self.present(dialogMessage, animated: true, completion: nil)
+        // Afficher une alerte
+        self.displayAlert(title: "Attention", message: "une connexion Internet est requise ! veuillez vérifier votre connexion et réessayer", actionButtonText: "Ok", style: .alert, vc: self)
         
         return false
     }
@@ -43,6 +39,7 @@ class HomeViewController: UIViewController {
             return
         }
         
+        NetworkMonitor.shared.stopMonitoring()
         navigationController?.pushViewController(weatherView, animated: true)
     }
 }
