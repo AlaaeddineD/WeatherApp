@@ -7,14 +7,29 @@
 
 import UIKit
 
+protocol WeatherViewControllerProtocol {
+    
+}
+
 class WeatherViewController: UIViewController {
     
     static let storyboardIdentifier = "WeatherView"
     
+    //UI
+    @IBOutlet weak var weatherTableView: UITableView!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    let viewModel = WeatherViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        viewModel.delegate = self
     }
+    
+}
+
+//MARK: VM Binding methods
+extension WeatherViewController: WeatherViewControllerProtocol{
     
 }
