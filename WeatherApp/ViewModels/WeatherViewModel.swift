@@ -66,6 +66,7 @@ class WeatherViewModel{
         //Incrémenter la barre de progression et arrêt du Timer si la barre est pleine
         if delegate.updateProgressBarProgress(progress: progressValueEachSecond){
             print("Done counting")
+            delegate.showCitiesTableView(cities: cities)
             timer.invalidate()
         }
         
@@ -74,6 +75,7 @@ class WeatherViewModel{
             delegate.updateTextLabelValue(text: getNextTextToShow())
         }
         
+        //Fair un appel API pour une ville toutes les 10 secondes
         if (secondsCounter % 10 == 0){
             makeApiCallForCurrentCity()
         }
@@ -102,7 +104,19 @@ class WeatherViewModel{
     private func loadWeatherData(city: City){
         print("Making api call for \(city.name) at \(secondsCounter)")
         Task{
-            let _ = await weatherApiCall.makeWeatherApiCall(city: city)
+            let response = await weatherApiCall.makeWeatherApiCall(city: city)
+            
+            switch response {
+            case .success(let city):
+                for index in cities.indices{
+                    if cities[index].name == city.name{
+                        cities[index] = city
+                        break
+                    }
+                }
+            case .failure(let failure):
+                print("Failed to load data for \(city.name) with error: \(failure)")
+            }
         }
     }
 }

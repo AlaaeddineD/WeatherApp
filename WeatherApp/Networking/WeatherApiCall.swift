@@ -28,8 +28,6 @@ final class WeatherApiCall{
                                 temperature: weatherData.getTemp(),
                                 icon: weatherData.getIconName())
             
-            print("\(cityData.name)  \(cityData.temperature)")
-            
             return .success(cityData)
         }catch{
             print("Fetch weather data attempt for \(city.name) failed with error: \(error.localizedDescription)")
