@@ -23,7 +23,7 @@ class CityWeatherTableViewCell: UITableViewCell {
     func setCellData(city: City){
         nameLabel.text = city.name
         
-        tempLabel.text = city.temperature != nil ? "\(city.temperature!)°C" : "--"
+        tempLabel.text = city.temperature != nil ? "\(Int(city.temperature!))°C" : "--"
         if city.icon != nil {
             iconImageV.image = UIImage(named: city.icon!)
         }

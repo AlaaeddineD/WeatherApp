@@ -25,13 +25,14 @@ class WeatherViewModel{
     private var secondsCounter: Int = 0
     
     //Cities properties
-    private var cities: [City] = [
+    private let cities: [City] = [
     City(name: "Rennes", latitude: 48.1113387, longitude: -1.6800198),
     City(name: "Paris", latitude: 48.8588897, longitude: 2.320041),
     City(name: "Nantes", latitude: 47.2186371, longitude: -1.5541362),
     City(name: "Bordeaux", latitude: 44.841225, longitude: -0.5800364),
     City(name: "Lyon", latitude: 45.7578137, longitude: 4.8320114),
     ]
+    private var citiesData: [City] = []
     private var currentCityIndex: Int = -1
     
     
@@ -41,6 +42,10 @@ class WeatherViewModel{
     
     //Configuration et démarrage de la minuterie
     func setupAndStartTimer(){
+        secondsCounter = 0
+        currentCityIndex = -1
+        currentTextIndex = -1
+        citiesData.removeAll()
         
         //Afficher le premier text
         delegate?.updateTextLabelValue(text: getNextTextToShow())
@@ -66,7 +71,7 @@ class WeatherViewModel{
         //Incrémenter la barre de progression et arrêt du Timer si la barre est pleine
         if delegate.updateProgressBarProgress(progress: progressValueEachSecond){
             print("Done counting")
-            delegate.showCitiesTableView(cities: cities)
+            delegate.showCitiesTableView(cities: citiesData)
             timer.invalidate()
         }
         
@@ -108,12 +113,7 @@ class WeatherViewModel{
             
             switch response {
             case .success(let city):
-                for index in cities.indices{
-                    if cities[index].name == city.name{
-                        cities[index] = city
-                        break
-                    }
-                }
+                citiesData.append(city)
             case .failure(let failure):
                 print("Failed to load data for \(city.name) with error: \(failure)")
             }

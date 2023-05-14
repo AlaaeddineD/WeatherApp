@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YL-4Y-1G6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenu(e)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YL-4Y-1G6">
                                 <rect key="frame" x="30" y="326" width="333" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="swJ-gS-OwG"/>
@@ -62,13 +62,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Rf9-Mz-Z7l">
-                                <rect key="frame" x="35" y="728" width="323" height="40"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Rf9-Mz-Z7l">
+                                <rect key="frame" x="35" y="728" width="323" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eYg-zW-ut0"/>
                                 </constraints>
+                                <color key="trackTintColor" systemColor="systemGray4Color"/>
                             </progressView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-97-Xne">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zkx-eE-t1g">
+                                <rect key="frame" x="35" y="728" width="323" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WiA-iE-d3S"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Recommencer"/>
+                                <connections>
+                                    <action selector="restartButtonAction" destination="R3T-oI-74m" eventType="touchUpInside" id="AsU-JX-Xiq"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-97-Xne">
                                 <rect key="frame" x="35" y="89" width="323" height="554.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -87,15 +99,19 @@
                             <constraint firstItem="xfP-by-dMv" firstAttribute="leading" secondItem="VSf-LB-bAH" secondAttribute="leading" constant="30" id="D7m-Gz-1Ae"/>
                             <constraint firstItem="4wK-97-Xne" firstAttribute="top" secondItem="VSf-LB-bAH" secondAttribute="top" constant="30" id="Ezj-Dm-q7r"/>
                             <constraint firstItem="Rf9-Mz-Z7l" firstAttribute="leading" secondItem="VSf-LB-bAH" secondAttribute="leading" constant="35" id="LC7-yD-VeJ"/>
+                            <constraint firstItem="VSf-LB-bAH" firstAttribute="bottom" secondItem="Zkx-eE-t1g" secondAttribute="bottom" constant="50" id="Qin-Yb-bSl"/>
+                            <constraint firstItem="Zkx-eE-t1g" firstAttribute="leading" secondItem="VSf-LB-bAH" secondAttribute="leading" constant="35" id="blD-xa-JaC"/>
                             <constraint firstItem="4wK-97-Xne" firstAttribute="leading" secondItem="VSf-LB-bAH" secondAttribute="leading" constant="35" id="dOQ-Mt-cmO"/>
                             <constraint firstItem="VSf-LB-bAH" firstAttribute="trailing" secondItem="4wK-97-Xne" secondAttribute="trailing" constant="35" id="j20-t2-r7r"/>
                             <constraint firstItem="VSf-LB-bAH" firstAttribute="trailing" secondItem="xfP-by-dMv" secondAttribute="trailing" constant="30" id="kDg-yl-eWH"/>
                             <constraint firstItem="VSf-LB-bAH" firstAttribute="trailing" secondItem="Rf9-Mz-Z7l" secondAttribute="trailing" constant="35" id="lJg-7G-Kwd"/>
                             <constraint firstItem="VSf-LB-bAH" firstAttribute="bottom" secondItem="Rf9-Mz-Z7l" secondAttribute="bottom" constant="50" id="pcc-kF-6K0"/>
+                            <constraint firstItem="VSf-LB-bAH" firstAttribute="trailing" secondItem="Zkx-eE-t1g" secondAttribute="trailing" constant="35" id="uZT-Kn-NSn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="Rf9-Mz-Z7l" id="ccE-Bh-zkP"/>
+                        <outlet property="restartButton" destination="Zkx-eE-t1g" id="pM4-vU-XDS"/>
                         <outlet property="textLabel" destination="xfP-by-dMv" id="H0I-6T-GZF"/>
                         <outlet property="weatherTableView" destination="4wK-97-Xne" id="176-a4-djt"/>
                     </connections>
@@ -124,6 +140,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

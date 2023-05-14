@@ -21,15 +21,37 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherTableView: UITableView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var restartButton: UIButton!
     
     private let viewModel = WeatherViewModel()
     private var cities: [City] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressBar.progress = 0
+        
+        setupProgressView()
         setupTableView()
+        restartButton.isHidden = true
+        
         viewModel.delegate = self
+        viewModel.setupAndStartTimer()
+    }
+    
+    //Configurer le ProgressView
+    private func setupProgressView(){
+        progressBar.progress = 0
+        progressBar.layer.cornerRadius = 20
+        progressBar.clipsToBounds = true
+    }
+    
+    @IBAction func restartButtonAction(){
+        progressBar.progress = 0
+        progressBar.isHidden = false
+        textLabel.isHidden = false
+        restartButton.isHidden = true
+        
+        cities = []
+        weatherTableView.reloadData()
         viewModel.setupAndStartTimer()
     }
 }
@@ -51,12 +73,16 @@ extension WeatherViewController: WeatherViewControllerProtocol{
     func showCitiesTableView(cities: [City]) {
         self.cities = cities
         weatherTableView.reloadData()
+        textLabel.isHidden = true
+        progressBar.isHidden = true
+        restartButton.isHidden = false
     }
 }
 
 //MARK: Table view
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource{
     
+    //Configurer le tableau et enregistrer la cellule personnalisée
     private func setupTableView(){
         let nib = UINib(nibName: "CityWeatherTableViewCell", bundle: nil)
         weatherTableView.register(nib, forCellReuseIdentifier: CityWeatherTableViewCell.cellIdentifier)
